@@ -3,232 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#4a148c">
-    <title>شمارشگر معکوس عید غدیر</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            -webkit-tap-highlight-color: transparent;
-        }
+    <meta name="theme-color" content="#4a148c"> <title>شمارشگر معکوس عید غدیر</title>
 
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: #333;
-            overflow: hidden;
-            touch-action: manipulation;
-        }
+    <link rel="stylesheet" href="style.css">
 
-        .container {
-            background-color: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            padding: 25px;
-            width: 95%;
-            max-width: 500px;
-            margin: 20px auto;
-            transition: all 0.5s ease;
-        }
+    <link rel="manifest" href="/manifest.json">
 
-        h1 {
-            color: #4a148c;
-            margin-bottom: 15px;
-            font-size: 1.6rem;
-            line-height: 1.4;
-        }
-
-        .countdown {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin: 25px 0;
-        }
-
-        .countdown-item {
-            background: linear-gradient(145deg, #6a11cb 0%, #2575fc 100%);
-            color: white;
-            padding: 12px;
-            border-radius: 8px;
-            min-width: 65px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            flex: 1 0 auto;
-        }
-
-        .countdown-number {
-            font-size: 2rem;
-            font-weight: bold;
-        }
-
-        .countdown-label {
-            font-size: 0.8rem;
-            margin-top: 5px;
-        }
-
-        .message {
-            font-size: 1.1rem;
-            margin: 15px 0;
-            color: #4a148c;
-            font-weight: bold;
-            line-height: 1.5;
-        }
-
-        .completed {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 1000;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: white;
-        }
-
-        .completed-message {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-            text-align: center;
-            color: #ffeb3b;
-            text-shadow: 0 0 10px rgba(255, 235, 59, 0.7);
-            padding: 0 20px;
-            line-height: 1.4;
-            animation: celebrate 2s infinite alternate;
-            transform-style: preserve-3d;
-        }
-
-        @keyframes celebrate {
-            0% {
-                transform: rotate(-5deg) translateY(0);
-                text-shadow: 0 0 10px rgba(255, 235, 59, 0.7);
-            }
-            25% {
-                transform: rotate(5deg) translateY(-10px);
-                text-shadow: 0 0 20px rgba(255, 235, 59, 0.9);
-            }
-            50% {
-                transform: rotate(-5deg) translateY(0);
-                text-shadow: 0 0 15px rgba(255, 100, 100, 0.8);
-            }
-            75% {
-                transform: rotate(5deg) translateY(-10px);
-                text-shadow: 0 0 25px rgba(100, 255, 100, 0.9);
-            }
-            100% {
-                transform: rotate(-5deg) translateY(0);
-                text-shadow: 0 0 30px rgba(100, 100, 255, 1);
-            }
-        }
-
-        .confetti {
-            position: absolute;
-            width: 15px;
-            height: 15px;
-            background-color: #f00;
-            border-radius: 50%;
-            animation: fall 5s linear infinite;
-            z-index: 1001;
-        }
-
-        .firework {
-            position: absolute;
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            box-shadow: 0 0 10px 5px;
-            animation: explode 1.5s ease-out infinite;
-            z-index: 1001;
-        }
-
-        @keyframes fall {
-            0% {
-                transform: translateY(-100vh) rotate(0deg) scale(1);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotate(360deg) scale(0.5);
-                opacity: 0;
-            }
-        }
-
-        @keyframes explode {
-            0% {
-                transform: scale(1);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(30);
-                opacity: 0;
-            }
-        }
-
-        .notification-btn {
-            background: linear-gradient(145deg, #ff416c, #ff4b2b);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 50px;
-            font-size: 1rem;
-            cursor: pointer;
-            margin-top: 15px;
-            box-shadow: 0 4px 15px rgba(255, 75, 43, 0.4);
-            transition: all 0.3s ease;
-            width: 100%;
-            max-width: 300px;
-        }
-
-        .notification-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255, 75, 43, 0.6);
-        }
-
-        .notification-btn:disabled {
-            background: #cccccc;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 20px 15px;
-                width: 100%;
-                border-radius: 0;
-                margin: 0;
-                min-height: 100vh;
-            }
-
-            h1 {
-                font-size: 1.4rem;
-            }
-
-            .countdown-item {
-                min-width: 60px;
-                padding: 10px;
-            }
-
-            .countdown-number {
-                font-size: 1.8rem;
-            }
-
-            .completed-message {
-                font-size: 2rem;
-            }
-        }
-    </style>
 </head>
 <body>
     <div class="container">
@@ -254,8 +34,23 @@
             </div>
         </div>
 
+        <div id="azanNotificationMessage" class="azan-message">
+            📣 وقت اذان شده است! 📣
+        </div>
+
         <button class="notification-btn" id="notificationBtn">فعال کردن اعلان</button>
     </div>
+
+    <audio id="azanAudio" preload="auto">
+        <source src="audio/azan_sound.mp3" type="audio/mpeg">
+        <source src="audio/azan_sound.ogg" type="audio/ogg">
+        مرورگر شما از عنصر audio پشتیبانی نمی‌کند.
+    </audio>
+    <audio id="finishAudio" preload="auto">
+        <source src="audio/final_jingle.mp3" type="audio/mpeg">
+        <source src="audio/final_jingle.ogg" type="audio/ogg">
+        مرورگر شما از عنصر audio پشتیبانی نمی‌کند.
+    </audio>
 
     <div class="completed" id="completed">
         <div class="completed-message" id="completed-message">عید غدیر مبارک!</div>
@@ -267,8 +62,17 @@
             eventTitle: "شمارشگر عید غدیر",
             eventDescription: "زمان باقی مانده تا عید سعید غدیر خم",
             // توجه: تاریخ هدف باید به وقت محلی تهران (UTC+3:30) تنظیم شود.
-            // مثال: برای 5 ژوئن 2025 ساعت 21:10:00 در تهران
-            targetDate: "2025-06-05T23:20:00+03:30",
+            // برای تست: 2 دقیقه و 10 ثانیه از الان (زمان فعلی: June 8, 2025 at 12:09:50 AM +0330)
+            // پس targetDate می تواند 2025-06-08T00:12:00+03:30 باشد
+            // لطفاً این تاریخ را به تاریخ واقعی عید غدیر تنظیم کنید.
+            // مثال برای 28 تیر 1404 (19 جولای 2025) ساعت 20:00:00
+            targetDate: "2025-06-08T00:25:00+03:30",
+
+            // زمان پخش اذان (بر حسب دقیقه قبل از پایان تایمر)
+            // برای تست: 0.5 دقیقه (30 ثانیه) قبل از پایان
+            // برای استفاده واقعی: مثلاً 10 دقیقه (10)
+            azanBeforeEndMinutes: 10,
+
             notificationThresholds: [
                 { hours: 24, message: "فقط 24 ساعت تا عید غدیر باقی مانده!" },
                 { hours: 12, message: "فقط 12 ساعت تا عید غدیر باقی مانده!" },
@@ -296,13 +100,19 @@
             completed: document.getElementById('completed'),
             completedMessage: document.getElementById('completed-message'),
             notificationBtn: document.getElementById('notificationBtn'),
-            container: document.querySelector('.container')
+            container: document.querySelector('.container'),
+            // عناصر جدید برای اذان و آهنگ پایان
+            azanNotificationMessage: document.getElementById('azanNotificationMessage'),
+            azanAudio: document.getElementById('azanAudio'),
+            finishAudio: document.getElementById('finishAudio')
         };
 
         // متغیرهای حالت
         let notificationPermission = false;
-        let hasFinalNotificationBeenSent = false; // برای اعلان پایانی
-        let notifiedThresholds = []; // برای ذخیره آستانه‌هایی که اعلانشان ارسال شده است
+        let hasFinalNotificationBeenSent = false;
+        let notifiedThresholds = [];
+        let azanPlayed = false; // پرچم جدید برای اطمینان از اینکه اذان فقط یک بار پخش شود
+        let finalSoundPlayed = false; // پرچم جدید برای اطمینان از اینکه آهنگ پایان فقط یک بار پخش شود
 
         // اعمال تنظیمات
         elements.eventTitle.textContent = config.eventTitle;
@@ -312,12 +122,39 @@
         // تابع برای دریافت زمان فعلی تهران
         function getTehranTime() {
             const now = new Date();
-            const tehranOffset = 3.5 * 60 * 60 * 1000; // UTC+3:30
-            const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
-            return new Date(utc + tehranOffset);
+            // محاسبه اختلاف ساعت ایران (UTC+3:30)
+            const tehranOffset = 3.5 * 60 * 60 * 1000;
+            const utc = now.getTime() + (now.getTimezoneOffset() * 60000); // زمان UTC
+            return new Date(utc + tehranOffset); // زمان تهران
         }
 
-        // مدیریت اعلان‌ها
+        // توابع پخش صوت
+        function playAzanSound() {
+            if (elements.azanAudio) {
+                // اطمینان از توقف پخش قبلی و شروع از اول
+                elements.azanAudio.pause();
+                elements.azanAudio.currentTime = 0;
+                elements.azanAudio.play().catch(e => console.error("Error playing azan audio:", e));
+
+                // نمایش پیام اذان
+                elements.azanNotificationMessage.style.display = 'block';
+                // بعد از چند ثانیه پیام رو مخفی کن (مثلاً 5 ثانیه)
+                setTimeout(() => {
+                    elements.azanNotificationMessage.style.display = 'none';
+                }, 5000);
+            }
+        }
+
+        function playFinishSound() {
+            if (elements.finishAudio) {
+                // اطمینان از توقف پخش قبلی و شروع از اول
+                elements.finishAudio.pause();
+                elements.finishAudio.currentTime = 0;
+                elements.finishAudio.play().catch(e => console.error("Error playing finish audio:", e));
+            }
+        }
+
+        // مدیریت اعلان‌ها (Notifications)
         function checkNotificationSupport() {
             if (!('Notification' in window)) {
                 elements.notificationBtn.textContent = 'مرورگر از اعلان پشتیبانی نمی‌کند';
@@ -371,17 +208,18 @@
             try {
                 const options = {
                     body: body,
-                    vibrate: [200, 100, 200, 100, 200],
-                    icon: 'icon.png', // مطمئن شوید که این فایل در ریشه پروژه شما وجود دارد
+                    vibrate: [200, 100, 200, 100, 200], // لرزش گوشی
+                    icon: 'icon.png', // مسیر آیکون برای اعلان
                     tag: tag // برای جلوگیری از نمایش اعلان‌های تکراری با یک محتوای یکسان
                 };
 
+                // استفاده از Service Worker برای اعلان‌ها در پس‌زمینه
                 if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
                     navigator.serviceWorker.ready.then(registration => {
                         registration.showNotification(title, options);
                     });
                 } else {
-                    // Fallback for browsers without Service Worker or when not activated
+                    // Fallback برای مرورگرهایی که Service Worker ندارند یا فعال نیست
                     new Notification(title, options);
                 }
             } catch (e) {
@@ -398,12 +236,11 @@
             for (const threshold of sortedThresholds) {
                 // اگر زمان باقی مانده کمتر یا مساوی آستانه باشد و قبلاً این آستانه اعلان نشده باشد
                 // و همچنین، مطمئن شویم که اعلان‌های آستانه‌های بزرگتر (که از این آستانه عبور کرده‌اند) ارسال نشده باشند.
-                // این بخش اصلی منطق "فقط همون اعلانی که باید بده رو وقتی بهش رسید بده" هست.
                 const hasPassedLargerThreshold = sortedThresholds.some(t =>
                     t.hours > threshold.hours && remainingHours < t.hours && notifiedThresholds.includes(t.hours));
 
-                if (remainingHours <= threshold.hours + (1/60) && // کمی تلرانس برای اطمینان از ارسال در لحظه دقیق
-                    remainingHours > threshold.hours - (1/60) && // تلرانس برای جلوگیری از تکرار بیش از حد در زمان دقیق
+                if (remainingHours <= threshold.hours + (1/3600) && // تلرانس 1 ثانیه برای اطمینان از ارسال در لحظه دقیق
+                    remainingHours > threshold.hours - (1/3600) && // تلرانس برای جلوگیری از تکرار بیش از حد
                     !notifiedThresholds.includes(threshold.hours) &&
                     !hasPassedLargerThreshold) {
 
@@ -425,11 +262,12 @@
             if (days > 0) result.push(`${days} روز`);
             if (hours > 0) result.push(`${hours} ساعت`);
             if (minutes > 0) result.push(`${minutes} دقیقه`);
-            if (seconds > 0 && result.length < 2) result.push(`${seconds} ثانیه`); // فقط ثانیه را اضافه کن اگر هنوز خیلی جزئی نشده
+            if (seconds > 0 && result.length < 2) result.push(`${seconds} ثانیه`);
 
             return result.length > 0 ? result.join(' و ') : 'لحظاتی دیگر';
         }
 
+        // توابع ایجاد انیمیشن‌های جشن (اکلیل و فشفشه)
         function createConfetti() {
             const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
             const confetti = document.createElement('div');
@@ -472,10 +310,16 @@
                 setTimeout(createFirework, i * 300);
             }
 
-            // نمایش پیام
+            // نمایش پیام پایان و مخفی کردن تایمر اصلی
             elements.completed.style.display = 'flex';
             elements.container.style.transform = 'scale(0.8)';
             elements.container.style.opacity = '0.3';
+
+            // پخش آهنگ پایان
+            if (!finalSoundPlayed) {
+                playFinishSound();
+                finalSoundPlayed = true;
+            }
 
             // ارسال اعلان پایانی فقط یک بار
             if (!hasFinalNotificationBeenSent) {
@@ -484,29 +328,42 @@
             }
         }
 
+        // تابع اصلی شمارشگر معکوس
         function updateCountdown() {
             const targetDate = new Date(config.targetDate);
             const now = getTehranTime();
-            const diff = targetDate - now;
+            let diff = targetDate - now; // اختلاف زمانی بر حسب میلی‌ثانیه
 
-            // بررسی آستانه‌های اعلان
-            // این تابع باید قبل از بررسی `diff <= 0` فراخوانی شود
-            // تا اعلان‌ها در لحظه دقیق ارسال شوند.
+            // --- منطق پخش اذان و نمایش پیام ---
+            // محاسبه زمان اذان (مثلاً 10 دقیقه قبل از پایان)
+            const azanTriggerOffsetMs = config.azanBeforeEndMinutes * 60 * 1000;
+            const azanTriggerTime = targetDate.getTime() - azanTriggerOffsetMs;
+
+            // اگر زمان فعلی از زمان اذان عبور کرده و تایمر هنوز به پایان نرسیده
+            // و اذان قبلاً پخش نشده باشد.
+            if (now.getTime() >= azanTriggerTime && diff > 0 && !azanPlayed) {
+                playAzanSound();
+                azanPlayed = true; // اطمینان از اینکه فقط یک بار پخش شود
+            }
+
+            // بررسی آستانه‌های اعلان (بعد از منطق اذان)
             if (diff > 0) {
                 checkThresholds(diff);
             }
 
+            // اگر زمان به پایان رسیده باشد
             if (diff <= 0) {
-                clearInterval(countdownInterval);
+                clearInterval(countdownInterval); // توقف به‌روزرسانی تایمر
                 elements.days.textContent = '00';
                 elements.hours.textContent = '00';
                 elements.minutes.textContent = '00';
                 elements.seconds.textContent = '00';
 
-                startCelebration();
-                return;
+                startCelebration(); // شروع انیمیشن جشن و پخش آهنگ پایان
+                return; // توقف اجرای بقیه تابع
             }
 
+            // محاسبه و نمایش زمان باقی‌مانده
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
             const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
@@ -517,43 +374,60 @@
             elements.minutes.textContent = minutes.toString().padStart(2, '0');
             elements.seconds.textContent = seconds.toString().padStart(2, '0');
 
-            // ریست کردن پرچم اعلان نهایی اگر زمان به عقب برگردد (مثلاً برای تست)
-            // در حالت عادی این اتفاق نمی افتد.
-            if (hasFinalNotificationBeenSent && diff > 0) {
-                 hasFinalNotificationBeenSent = false;
+            // ریست کردن پرچم‌ها اگر زمان به عقب برگردد (مثلاً برای تست یا تغییر تاریخ هدف)
+            // در حالت عادی این اتفاق نمی افتد و برای جلوگیری از باگ در صورت تغییر دستی تاریخ است
+            if (diff > 0) {
+                 if (hasFinalNotificationBeenSent) {
+                     hasFinalNotificationBeenSent = false;
+                 }
+                 if (finalSoundPlayed) {
+                     finalSoundPlayed = false;
+                 }
+                 // اگر زمان از زمان اذان فاصله بگیرد و دوباره به قبل از زمان اذان برسد،
+                 // پرچم اذان هم ریست شود تا برای تست‌های مکرر کار کند.
+                 if (now.getTime() < azanTriggerTime && azanPlayed) {
+                     azanPlayed = false;
+                     // همچنین اگر از زمان اذان عبور کرده ولی اختلاف ساعت کم باشد، اطمینان حاصل شود که پیام اذان پنهان شود
+                     elements.azanNotificationMessage.style.display = 'none';
+                 }
             }
         }
 
         // رویدادها
         elements.notificationBtn.addEventListener('click', requestNotificationPermission);
 
-        // مقداردهی اولیه
-        updateNotificationButton();
-        let countdownInterval = setInterval(updateCountdown, 1000); // اطمینان از تعریف صحیح interval
-        updateCountdown();
+        // مقداردهی اولیه برنامه
+        updateNotificationButton(); // به‌روزرسانی وضعیت دکمه اعلان در ابتدا
+        let countdownInterval = setInterval(updateCountdown, 1000); // به‌روزرسانی تایمر هر 1 ثانیه
+        updateCountdown(); // اجرای اولیه برای جلوگیری از تأخیر 1 ثانیه در نمایش اولیه
 
+
+        // --- بهینه‌سازی‌های لمسی برای موبایل ---
         // جلوگیری از رفتارهای ناخواسته در موبایل (مانند زوم با دو انگشت یا منوی کانتکست)
         document.addEventListener('gesturestart', function (e) {
             e.preventDefault();
         });
 
         document.addEventListener('touchmove', function (e) {
-            if (e.scale !== 1) { // برای جلوگیری از زوم
+            // جلوگیری از زوم با دو انگشت
+            if (e.scale !== 1) {
                 e.preventDefault();
             }
-        }, { passive: false });
+        }, { passive: false }); // `passive: false` برای اجازه `preventDefault`
 
         let lastTouchEnd = 0;
         document.addEventListener('touchend', function (e) {
             const now = Date.now();
-            if (now - lastTouchEnd <= 300) { // برای جلوگیری از دوبار کلیک ناخواسته
+            // جلوگیری از دوبار کلیک ناخواسته که ممکن است زوم کند
+            if (now - lastTouchEnd <= 300) {
                 e.preventDefault();
             }
             lastTouchEnd = now;
         }, false);
 
 
-        // ثبت Service Worker
+        // --- ثبت Service Worker ---
+        // این بخش به وب‌سایت شما قابلیت‌های PWA می‌دهد (مثلاً اعلان‌ها در پس‌زمینه)
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('/sw.js').then(registration => {
